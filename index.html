@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>編み物・くらしのアプリ | Knitting & Life Tools ✿ YUCCHI ✿</title>
+<meta name="description" content="棒針・かぎ針の計算をサポートする編み物ツールを無料で公開。分散減目・分散増目の計算、目数カウンターなど、編み物をもっと楽しくする大人かわいいアプリをまとめたポータルサイトです。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{ color-scheme: light only; }
+  @media (prefers-color-scheme: dark) {
+    html { background: #FAFAF8 !important; }
+    body { background-color: #FAFAF8 !important; color: #5C5258 !important; }
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  :root{
+    --bg:#FAFAF8;
+    --surface:#FFFFFF;
+    --text:#5C5258;
+    --text-sub:#9A908E;
+    --border:#E8E2DE;
+    --nav-accent:#8B7E6E;
+    --brand-gold:#9C8748;
+    --radius:16px;
+    --radius-sm:10px;
+
+    --badge-new-bg:#F5E8B0;    --badge-new-border:#C8B448;  --badge-new-text:#7A6010;
+    --badge-live-bg:#EDD0D0;   --badge-live-border:#C89898; --badge-live-text:#7A4848;
+    --badge-soon-bg:#D4E0E8;   --badge-soon-border:#A4B8C8; --badge-soon-text:#486070;
+
+    --accent-pink:#E8AAB4;
+    --accent-pink-icon:#FBEEF0;
+    --accent-gray:#B7C4CC;
+    --accent-gray-icon:#EEF2F4;
+  }
+
+  html,body{background:var(--bg);}
+  body{
+    font-family:'Zen Maru Gothic',sans-serif;
+    color:var(--text);
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .site{max-width:900px;margin:0 auto;padding:0 0 50px;}
+
+  /* ===== ヘッダー ===== */
+  header{text-align:center;padding:32px 20px 20px;}
+  @media (min-width:680px){ header{padding:48px 20px 24px;} }
+
+  header h1{
+    font-family:'Zen Maru Gothic',sans-serif;
+    font-size:clamp(13px,3vw,15px);
+    font-weight:500;
+    color:var(--text-sub);
+    letter-spacing:.14em;
+    line-height:1.4;
+    opacity:.75;
+    margin-bottom:10px;
+  }
+  header h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(34px,8vw,56px);
+    font-weight:400;
+    color:var(--text);
+    letter-spacing:.09em;
+    line-height:1.15;
+    margin-bottom:16px;
+  }
+  header .title-ja-sub{
+    font-family:'Zen Maru Gothic',sans-serif;
+    font-size:14px;
+    font-weight:500;
+    color:var(--text-sub);
+    letter-spacing:.08em;
+    opacity:.75;
+    margin-bottom:16px;
+    display:flex;align-items:center;justify-content:center;gap:12px;
+  }
+  header .title-ja-sub::before,
+  header .title-ja-sub::after{
+    content:'';display:block;width:30px;height:1px;
+    background:currentColor;opacity:.45;flex-shrink:0;
+  }
+  header .brand{
+    font-family:'Cormorant Garamond',serif;
+    font-size:16px;
+    font-weight:500;
+    color:var(--brand-gold);
+    letter-spacing:.3em;
+  }
+  header .brand .deco{ letter-spacing:0; margin:0 4px; font-size:13px; }
+
+  /* ===== ナビ ===== */
+  .nav{display:flex;justify-content:center;gap:8px;padding:26px 20px 0;flex-wrap:wrap;}
+  .nav-item{
+    font-family:'Zen Maru Gothic',sans-serif;
+    font-size:13px;font-weight:500;
+    color:var(--text-sub);
+    padding:9px 22px;border-radius:999px;
+    border:1.5px solid var(--border);
+    background:var(--surface);
+    cursor:pointer;letter-spacing:.05em;
+    transition:all .2s;white-space:nowrap;
+  }
+  .nav-item:hover{border-color:var(--nav-accent);color:var(--nav-accent);}
+  .nav-item.active{background:var(--nav-accent);color:#fff;border-color:var(--nav-accent);}
+
+  /* ===== ヒーロー ===== */
+  .hero{
+    margin:28px 20px 0;
+    border-radius:var(--radius);
+    border:1.5px solid var(--border);
+    overflow:hidden;
+    background:var(--surface);
+  }
+  .hero-visual{
+    height:260px;
+    background:#F6F1EC;
+    position:relative;
+    overflow:hidden;
+    border-bottom:1.5px solid var(--border);
+  }
+  .hero-visual img{
+    width:100%;height:100%;
+    object-fit:cover;
+    object-position:center 70%;
+    display:block;
+  }
+  .hero-body{padding:22px 24px 24px;}
+  .hero-body-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:24px;font-weight:400;letter-spacing:.08em;
+    color:var(--text);margin-bottom:10px;
+  }
+  .hero-body-desc{font-size:13px;line-height:2;color:var(--text);opacity:.85;}
+  .hero-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+  .tag{
+    font-size:11px;padding:4px 12px;border-radius:999px;
+    font-weight:700;letter-spacing:.03em;
+    border:1.5px solid var(--border);
+    background:var(--bg);color:var(--text-sub);
+  }
+
+  /* ===== セクション ===== */
+  .section{margin:56px 20px 0;}
+  .sec-label{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+  .sec-label::before,.sec-label::after{content:'';flex:1;height:1px;background:var(--border);}
+  .sec-label h2{
+    font-family:'Zen Maru Gothic',sans-serif;
+    font-size:16px;font-weight:700;letter-spacing:.12em;
+    color:var(--text-sub);white-space:nowrap;
+    margin:0;
+  }
+  .sec-intro{
+    font-size:12px;color:var(--text-sub);line-height:1.8;
+    margin:-6px 0 20px;opacity:.85;
+  }
+
+  /* ===== アプリカード ===== */
+  .app-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+  .app-card{
+    background:var(--surface);
+    border-radius:var(--radius-sm);
+    border:1.5px solid var(--border);
+    overflow:hidden;
+    transition:transform .25s ease,box-shadow .25s ease,background .25s ease;
+    text-decoration:none;display:block;color:inherit;
+  }
+  .app-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 26px rgba(92,82,88,.12);
+  }
+  .app-card.live:hover{ background:#FFFBFB; }
+  .app-card.soon{ cursor:default; }
+  .app-card.soon:hover{ background:#FAFBFC; }
+
+  .app-thumb{
+    height:200px;
+    display:flex;align-items:center;justify-content:center;
+    border-bottom:1.5px solid var(--border);
+    overflow:hidden;
+    padding:12px;
+  }
+  .app-thumb.live{background:var(--accent-pink-icon);}
+  .app-thumb.soon{background:var(--accent-gray-icon);}
+  .app-thumb img{
+    width:100%;height:100%;object-fit:contain;
+    display:block;
+    border-radius:6px;
+    box-shadow:0 2px 10px rgba(92,82,88,.10);
+  }
+  .app-thumb .app-thumb-icon{font-size:32px;}
+
+  .app-card-body{padding:16px 18px 18px;}
+  .app-card h3{font-size:14px;font-weight:700;color:var(--text);letter-spacing:.03em;margin-bottom:5px;}
+  .app-card p{font-size:12px;color:var(--text-sub);line-height:1.7;}
+  .app-badge{
+    display:inline-block;font-size:11px;padding:3px 11px;
+    border-radius:999px;margin-top:12px;font-weight:700;
+    letter-spacing:.03em;border:1.5px solid;
+  }
+  .app-badge.live{background:var(--badge-live-bg);border-color:var(--badge-live-border);color:var(--badge-live-text);}
+  .app-badge.soon{background:var(--badge-soon-bg);border-color:var(--badge-soon-border);color:var(--badge-soon-text);}
+
+  /* ===== 記事カード ===== */
+  .article-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
+  .article-card{
+    background:var(--surface);border-radius:var(--radius-sm);
+    border:1.5px solid var(--border);overflow:hidden;
+    text-decoration:none;color:inherit;display:block;
+    transition:transform .25s ease,box-shadow .25s ease;
+  }
+  .article-card.is-linked:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 26px rgba(92,82,88,.12);
+  }
+  .article-thumb{
+    height:100px;background:#EFE9E4;
+    display:flex;align-items:center;justify-content:center;font-size:26px;
+  }
+  .article-body{padding:16px 18px;}
+  .article-body p{font-size:12px;color:var(--text-sub);font-style:italic;line-height:1.7;}
+  /* 記事が公開されたときの表示（タイトル・抜粋・note導線） */
+  .article-title{
+    font-size:13px;font-weight:700;color:var(--text);
+    letter-spacing:.03em;margin-bottom:6px;line-height:1.6;
+    font-style:normal;
+  }
+  .article-excerpt{
+    font-size:12px;color:var(--text-sub);line-height:1.8;
+    font-style:normal;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .article-source{
+    display:flex;align-items:center;gap:4px;margin-top:12px;
+    font-size:11px;font-weight:700;color:var(--nav-accent);letter-spacing:.03em;
+  }
+  .article-source .arrow{font-size:11px;transition:transform .2s;}
+  .article-card.is-linked:hover .article-source .arrow{transform:translate(2px,-2px);}
+
+  /* ===== フッター ===== */
+  footer{text-align:center;margin-top:40px;padding:0 20px;}
+  footer .sec-div{
+    height:1px;background:var(--border);margin:0 0 30px;
+  }
+  footer .brand{
+    font-family:'Cormorant Garamond',serif;
+    font-size:16px;font-weight:500;color:var(--brand-gold);letter-spacing:.3em;
+    margin-bottom:8px;
+  }
+  footer .copy{font-size:11px;color:var(--text-sub);letter-spacing:.03em;opacity:.8;}
+
+  /* X（旧Twitter）リンク・最終更新日 */
+  .x-footer-row{
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    margin-top:22px;
+  }
+  .x-icon-btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:30px;height:30px;border-radius:6px;
+    border:1.5px solid var(--border);background:var(--surface);
+    text-decoration:none;
+    transition:background .2s,border-color .2s;
+  }
+  .x-icon-btn svg{fill:var(--text-sub);}
+  .x-icon-btn:hover{background:#F3ECE2;}
+  .last-updated{font-size:11px;color:var(--text-sub);opacity:.7;letter-spacing:.03em;}
+
+  /* すべてのタブ以外を絞り込み表示するための制御 */
+  .section, .hero{ transition:opacity .15s ease; }
+  .is-hidden{ display:none !important; }
+
+  /* ===== アコーディオン（About等） ===== */
+  .notes-wrap{margin:40px 20px 0;}
+  .content-divider{height:1px;background:var(--border);margin:52px 20px 0;}
+  .data-note{
+    width:100%;border-radius:var(--radius-sm);overflow:hidden;
+    border:1.5px solid var(--border);background:var(--surface);
+  }
+  .data-note-btn{
+    width:100%;background:none;border:none;padding:12px 16px;
+    font-family:'Zen Maru Gothic',sans-serif;font-size:12px;font-weight:700;
+    color:var(--text-sub);cursor:pointer;
+    display:flex;align-items:center;justify-content:space-between;
+    letter-spacing:.06em;transition:background .15s;
+  }
+  .data-note-btn:hover{background:#faf7f5;}
+  .data-note-arrow{
+    font-size:10px;transition:transform .25s ease;display:inline-block;
+    color:var(--text-sub);opacity:.6;
+  }
+  .data-note.open .data-note-arrow{transform:rotate(180deg);}
+  .data-note-body{
+    display:none;padding:4px 16px 16px;
+    font-family:'Zen Maru Gothic',sans-serif;font-size:12px;
+    color:var(--text-sub);line-height:1.9;border-top:1px solid var(--border);
+    padding-top:12px;
+  }
+  .data-note.open .data-note-body{display:block;}
+</style>
+</head>
+<body>
+<div class="site">
+
+  <header>
+    <h1>編み物・くらしのアプリ</h1>
+    <h2>Knitting &amp; Life Tools</h2>
+    <p class="title-ja-sub">無料で使える大人かわいいアプリをまとめました</p>
+    <p class="brand"><span class="deco">✿</span>YUCCHI<span class="deco">✿</span></p>
+  </header>
+
+  <nav class="nav" id="filterNav">
+    <button class="nav-item active" data-filter="all">すべて</button>
+    <button class="nav-item" data-filter="knit">編み物ツール</button>
+    <button class="nav-item" data-filter="life">くらしツール</button>
+    <button class="nav-item" data-filter="article">よみもの</button>
+  </nav>
+
+  <div class="hero" data-cat="knit">
+    <div class="hero-visual">
+      <img src="assets/hero.jpg" alt="編み途中のニットと、YUCCHI手作りのステッチマーカー" loading="lazy">
+    </div>
+    <div class="hero-body">
+      <p class="hero-body-title">A Little Easier, A Little Cozier</p>
+      <p class="hero-body-desc">編み物とくらしをちょっと便利に心地良くするアプリを無料で公開しています。</p>
+      <div class="hero-tags">
+        <span class="tag">無料で使える</span>
+        <span class="tag">ログイン不要</span>
+        <span class="tag">スマホ対応</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 編み物ツール -->
+  <section class="section" data-cat="knit">
+    <div class="sec-label"><h2>編み物ツール</h2></div>
+    <p class="sec-intro">棒針・かぎ針編みをサポートするアプリをまとめました。編み物をもっと楽しく。</p>
+    <div class="app-grid">
+
+      <a class="app-card live" href="https://webkorisu.github.io/knitting-counter/" data-app="counter">
+        <div class="app-thumb live"><img src="assets/counter-thumb.jpg" alt="編み物カウンターの操作画面"></div>
+        <div class="app-card-body">
+          <h3>編み物カウンター</h3>
+          <p>目数・段数・周数・回数をシンプルにカウント</p>
+          <span class="app-badge live">公開中</span>
+        </div>
+      </a>
+
+      <a class="app-card live" href="https://webkorisu.github.io/knitting-stitch-calculator/" data-app="calc">
+        <div class="app-thumb live"><img src="assets/calc-thumb.jpg" alt="分散増減計算の結果画面"></div>
+        <div class="app-card-body">
+          <h3>分散増減計算</h3>
+          <p>分散減目・分散増目をかんたん計算</p>
+          <span class="app-badge live">公開中</span>
+        </div>
+      </a>
+
+      <div class="app-card soon">
+        <div class="app-thumb soon"><span class="app-thumb-icon">📏</span></div>
+        <div class="app-card-body">
+          <h3>編み図ルーラー</h3>
+          <p>編み図を見やすくサポート</p>
+          <span class="app-badge soon">準備中</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- くらしツール -->
+  <section class="section" data-cat="life">
+    <div class="sec-label"><h2>くらしツール</h2></div>
+    <p class="sec-intro">毎日のくらしをちょっと便利に心地良く。少しづつアプリを増やしています。</p>
+    <div class="app-grid">
+
+      <a class="app-card live" href="https://webkorisu.github.io/tarot/" data-app="tarot">
+        <div class="app-thumb live"><img src="assets/tarot-thumb.jpg" alt="タロット占いの結果画面（女帝カード）"></div>
+        <div class="app-card-body">
+          <h3>タロット占い</h3>
+          <p>気軽に楽しめるタロットカード</p>
+          <span class="app-badge live">公開中</span>
+        </div>
+      </a>
+
+      <div class="app-card soon">
+        <div class="app-thumb soon"><span class="app-thumb-icon">📝</span></div>
+        <div class="app-card-body">
+          <h3>くらしのメモ</h3>
+          <p>日々のくらしをかわいく記録</p>
+          <span class="app-badge soon">準備中</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 記事・読み物 -->
+  <section class="section" data-cat="article">
+    <div class="sec-label"><h2>よみもの</h2></div>
+    <p class="sec-intro">編み物やくらしの記録。</p>
+    <div class="article-grid">
+      <div class="article-card">
+        <div class="article-thumb">📖</div>
+        <div class="article-body"><p>準備中です。もうしばらくお待ちください。</p></div>
+      </div>
+      <div class="article-card">
+        <div class="article-thumb">📖</div>
+        <div class="article-body"><p>準備中です。もうしばらくお待ちください。</p></div>
+      </div>
+    </div>
+    <!--
+      記事が公開できたら、上のカード1つを下のテンプレートに置き換えてください（タイトル・抜粋・URLを差し替えるだけでOK）。
+
+      <a class="article-card is-linked" href="https://note.com/xxxxx/n/xxxxxxxx" target="_blank" rel="noopener noreferrer">
+        <div class="article-thumb">📖</div>
+        <div class="article-body">
+          <p class="article-title">記事タイトルをここに</p>
+          <p class="article-excerpt">記事の内容が少し伝わる、1〜2行の紹介文をここに入れます。</p>
+          <div class="article-source"><span>noteで読む</span><span class="arrow">↗</span></div>
+        </div>
+      </a>
+    -->
+  </section>
+
+  <div class="content-divider"></div>
+
+  <div class="notes-wrap">
+    <div style="display:flex;flex-direction:column;gap:6px;">
+
+      <div class="data-note" id="aboutNote">
+        <button class="data-note-btn" onclick="toggleNote('aboutNote')">
+          <span>✿ このサイトについて</span>
+          <span class="data-note-arrow">▼</span>
+        </button>
+        <div class="data-note-body">
+          <p>このサイトは、編み物や日々の暮らしをちょっと便利にするアプリをまとめた、個人制作のポータルサイトです。</p>
+          <p>各アプリの計算結果・提案内容はすべて参考情報としてお使いください。仕上がりや結果はゲージ・素材・個人差によって異なりますので、必ずご自身でご確認のうえお使いください。</p>
+          <p>作者（YUCCHI）は、このサイトおよび掲載アプリの内容・結果によって生じたいかなる損害についても責任を負いかねます。あらかじめご了承ください。</p>
+        </div>
+      </div>
+
+      <div class="data-note" id="yucchiNote">
+        <button class="data-note-btn" onclick="toggleNote('yucchiNote')">
+          <span>✿ YUCCHI ✿について</span>
+          <span class="data-note-arrow">▼</span>
+        </button>
+        <div class="data-note-body">
+          <p>編み物×AI×大人かわいいを発信中です。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="sec-div"></div>
+    <p class="brand"><span class="deco">✿</span>YUCCHI<span class="deco">✿</span></p>
+    <p class="copy">© 2026 YUCCHI'S — small tools for cozy days</p>
+    <div class="x-footer-row">
+      <a href="https://x.com/yuttyan4444" target="_blank" rel="noopener noreferrer"
+         aria-label="XでYUCCHIをフォロー" class="x-icon-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.254 5.622L18.244 2.25Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+        </svg>
+      </a>
+      <span class="last-updated">最終更新：2026.07.25</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  function toggleNote(id) {
+    document.getElementById(id).classList.toggle('open');
+  }
+  (function(){
+    var buttons = document.querySelectorAll('.nav-item');
+    var sections = document.querySelectorAll('.section');
+    var hero = document.querySelector('.hero');
+
+    buttons.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        buttons.forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        var filter = btn.getAttribute('data-filter');
+
+        sections.forEach(function(sec){
+          var cat = sec.getAttribute('data-cat');
+          sec.classList.toggle('is-hidden', !(filter === 'all' || filter === cat));
+        });
+
+        // ヒーローはポータル全体の紹介なので「すべて」タブのときだけ表示
+        hero.classList.toggle('is-hidden', filter !== 'all');
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
