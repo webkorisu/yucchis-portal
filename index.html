@@ -198,6 +198,7 @@
     border-bottom:1.5px solid var(--border);
     overflow:hidden;
     padding:12px;
+    position:relative;
   }
   .app-thumb.live{background:var(--accent-pink-icon);}
   .app-thumb.soon{background:var(--accent-gray-icon);}
@@ -206,8 +207,22 @@
     display:block;
     border-radius:6px;
     box-shadow:0 2px 10px rgba(92,82,88,.10);
+    transition:transform .25s ease,box-shadow .25s ease;
   }
   .app-thumb .app-thumb-icon{font-size:32px;}
+
+  /* ホバー時、スクショだけ大きく拡大(マウス操作の機種だけ) */
+  @media (hover:hover){
+    .app-card.live{ overflow:visible; }
+    .app-thumb.live{ overflow:visible; }
+    .app-card.live:hover .app-thumb img{
+      transform:scale(1.4);
+      transform-origin:50% 100%;
+      box-shadow:0 16px 34px rgba(92,82,88,.30);
+      z-index:20;
+      position:relative;
+    }
+  }
 
   .app-card-body{padding:16px 18px 18px;}
   .app-card h3{font-size:14px;font-weight:700;color:var(--text);letter-spacing:.03em;margin-bottom:5px;}
