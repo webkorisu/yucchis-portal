@@ -175,7 +175,7 @@
   }
 
   /* ===== アプリカード ===== */
-  .app-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+  .app-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,300px));justify-content:start;gap:16px;}
   .app-card{
     background:var(--surface);
     border-radius:var(--radius-sm);
@@ -193,7 +193,7 @@
   .app-card.soon:hover{ background:#FAFBFC; }
 
   .app-thumb{
-    height:200px;
+    height:240px;
     display:flex;align-items:center;justify-content:center;
     border-bottom:1.5px solid var(--border);
     overflow:hidden;
@@ -207,22 +207,8 @@
     display:block;
     border-radius:6px;
     box-shadow:0 2px 10px rgba(92,82,88,.10);
-    transition:transform .25s ease,box-shadow .25s ease;
   }
   .app-thumb .app-thumb-icon{font-size:32px;}
-
-  /* ホバー時、スクショだけ大きく拡大(マウス操作の機種だけ) */
-  @media (hover:hover){
-    .app-card.live{ overflow:visible; }
-    .app-thumb.live{ overflow:visible; }
-    .app-card.live:hover .app-thumb img{
-      transform:scale(1.4);
-      transform-origin:50% 100%;
-      box-shadow:0 16px 34px rgba(92,82,88,.30);
-      z-index:20;
-      position:relative;
-    }
-  }
 
   .app-card-body{padding:16px 18px 18px;}
   .app-card h3{font-size:14px;font-weight:700;color:var(--text);letter-spacing:.03em;margin-bottom:5px;}
@@ -384,7 +370,7 @@
       <a class="app-card live" href="https://webkorisu.github.io/knitting-stitch-calculator/" target="_blank" rel="noopener noreferrer" data-app="calc">
         <div class="app-thumb live"><img src="assets/calc-thumb.jpg" alt="分散増減計算の結果画面"></div>
         <div class="app-card-body">
-          <h3>分散増減計算</h3>
+          <h3>編み物分散増減計算</h3>
           <p>分散減目・分散増目をかんたん計算</p>
           <span class="app-badge live">公開中</span>
         </div>
@@ -417,6 +403,7 @@
         </div>
       </a>
 
+      <!-- 一旦非表示中。復活させる場合はこのコメントを外す
       <div class="app-card soon">
         <div class="app-thumb soon"><span class="app-thumb-icon">📝</span></div>
         <div class="app-card-body">
@@ -425,6 +412,7 @@
           <span class="app-badge soon">準備中</span>
         </div>
       </div>
+      -->
 
     </div>
   </section>
