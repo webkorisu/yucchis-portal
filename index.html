@@ -34,8 +34,8 @@
     --radius-sm:10px;
 
     --badge-new-bg:#F5E8B0;    --badge-new-border:#C8B448;  --badge-new-text:#7A6010;
-    --badge-live-bg:#EDD0D0;   --badge-live-border:#C89898; --badge-live-text:#7A4848;
-    --badge-soon-bg:#D4E0E8;   --badge-soon-border:#A4B8C8; --badge-soon-text:#486070;
+    --badge-live-bg:#BD857A;   --badge-live-border:#A84D68; --badge-live-text:#FFFFFF;
+    --badge-soon-bg:#80A4AD;   --badge-soon-border:#4A6D85; --badge-soon-text:#FFFFFF;
 
     --accent-pink:#E8AAB4;
     --accent-pink-icon:#FBEEF0;
@@ -152,6 +152,9 @@
   }
   .hero-body-desc{font-size:13px;line-height:2;color:var(--text);opacity:.85;}
   .hero-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+  @media (max-width:600px){
+    .hero-tags{ justify-content:center; }
+  }
   .tag{
     font-size:11px;padding:4px 12px;border-radius:999px;
     font-weight:700;letter-spacing:.03em;
@@ -184,7 +187,7 @@
     border:1.5px solid var(--border);
     overflow:hidden;
     transition:transform .25s ease,box-shadow .25s ease,background .25s ease;
-    text-decoration:none;display:block;color:inherit;
+    text-decoration:none;display:flex;flex-direction:column;color:inherit;
   }
   /* 1列だけの幅（520px未満）は、隣に比べる相手がいないので上限をつけて見た目を整える */
   @media (max-width:519px){
@@ -202,6 +205,7 @@
     height:240px;
     max-height:240px;
     min-height:240px;
+    flex-shrink:0;
     display:block;
     border-bottom:1.5px solid var(--border);
     overflow:hidden;
@@ -223,16 +227,17 @@
     position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
   }
 
-  .app-card-body{padding:16px 18px 18px;}
+  .app-card-body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1;}
   .app-card h3{font-size:14px;font-weight:700;color:var(--text);letter-spacing:.03em;margin-bottom:5px;}
-  .app-card p{font-size:12px;color:var(--text-sub);line-height:1.7;}
+  .app-card p{font-size:12px;color:var(--text-sub);line-height:1.7;flex:1;}
   .app-badge{
-    display:inline-block;font-size:11px;padding:3px 11px;
+    display:inline-block;font-size:11px;padding:2px 11px 4px;
     border-radius:999px;margin-top:12px;font-weight:700;
-    letter-spacing:.03em;border:1.5px solid;
+    letter-spacing:.03em;
+    align-self:flex-start;
   }
-  .app-badge.live{background:var(--badge-live-bg);border-color:var(--badge-live-border);color:var(--badge-live-text);}
-  .app-badge.soon{background:var(--badge-soon-bg);border-color:var(--badge-soon-border);color:var(--badge-soon-text);}
+  .app-badge.live{background:var(--badge-live-bg);color:var(--badge-live-text);}
+  .app-badge.soon{background:var(--badge-soon-bg);color:var(--badge-soon-text);}
 
   /* ===== 記事カード ===== */
   .article-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
@@ -286,8 +291,8 @@
 
   /* X（旧Twitter）リンク・最終更新日 */
   .x-footer-row{
-    display:flex;align-items:center;justify-content:center;gap:14px;
-    margin-top:22px;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:8px 0;margin:0 20px;
   }
   .x-icon-btn{
     display:inline-flex;align-items:center;justify-content:center;
@@ -331,6 +336,19 @@
     padding-top:12px;
   }
   .data-note.open .data-note-body{display:block;}
+
+  /* ホーム画面キャッシュの手動リセットボタン */
+  .reload-latest-btn{
+    display:block;width:100%;margin-top:10px;padding:9px 12px;
+    background:var(--surface);border:1.5px solid var(--border);
+    border-radius:var(--radius-sm);
+    font-family:'Zen Maru Gothic',sans-serif;font-size:11px;font-weight:700;
+    color:var(--text-sub);letter-spacing:.04em;cursor:pointer;
+    transition:background .15s,border-color .15s;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .reload-latest-btn:hover{background:#faf5f6;border-color:var(--nav-accent);}
+  .reload-latest-btn:active{transform:scale(.97);}
 </style>
 </head>
 <body>
@@ -475,6 +493,18 @@
         </div>
       </div>
 
+      <div class="data-note" id="dataNote">
+        <button class="data-note-btn" onclick="toggleNote('dataNote')">
+          <span>✿ データについて</span>
+          <span class="data-note-arrow">▼</span>
+        </button>
+        <div class="data-note-body">
+          <p>このポータルサイト自体は、各アプリへの入り口なので、データの保存は行っていません。目数カウントなどの記録は、それぞれのアプリの中に保存されます。スマホとPCなど、端末が異なると記録は共有されません。</p>
+          <p>📱 ホーム画面に追加してご利用の場合、アップデート後もすぐには最新版に切り替わらないことがあります。反映されない時は、アプリスイッチャーから一度完全に閉じて開き直すか、下のボタンで最新版を読み込み直せます。</p>
+          <button type="button" class="reload-latest-btn" onclick="reloadLatestVersion()">🔄 最新版を読み込み直す</button>
+        </div>
+      </div>
+
       <div class="data-note" id="yucchiNote">
         <button class="data-note-btn" onclick="toggleNote('yucchiNote')">
           <span>✿ YUCCHI ✿について</span>
@@ -488,19 +518,20 @@
     </div>
   </div>
 
+  <div class="x-footer-row">
+    <a href="https://x.com/yuttyan4444" target="_blank" rel="noopener noreferrer"
+       aria-label="XでYUCCHIをフォロー" class="x-icon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.254 5.622L18.244 2.25Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+      </svg>
+    </a>
+    <span class="last-updated">最終更新：2026.07.25</span>
+  </div>
+
   <footer>
     <div class="sec-div"></div>
     <p class="brand"><span class="deco">✿</span>YUCCHI<span class="deco">✿</span></p>
     <p class="copy">© 2026 YUCCHI'S — small tools for cozy days</p>
-    <div class="x-footer-row">
-      <a href="https://x.com/yuttyan4444" target="_blank" rel="noopener noreferrer"
-         aria-label="XでYUCCHIをフォロー" class="x-icon-btn">
-        <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.254 5.622L18.244 2.25Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
-        </svg>
-      </a>
-      <span class="last-updated">最終更新：2026.07.25</span>
-    </div>
   </footer>
 
 </div>
@@ -508,6 +539,9 @@
 <script>
   function toggleNote(id) {
     document.getElementById(id).classList.toggle('open');
+  }
+  function reloadLatestVersion() {
+    location.href = location.pathname + '?v=' + Date.now();
   }
   (function(){
     var buttons = document.querySelectorAll('.nav-item');
