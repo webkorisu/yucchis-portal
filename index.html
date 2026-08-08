@@ -337,6 +337,35 @@
   }
   .data-note.open .data-note-body{display:block;}
 
+  /* ===== TOPへ戻るフロートボタン ===== */
+  .scroll-top-btn{
+    position:fixed;
+    right:18px;bottom:18px;
+    width:46px;height:46px;
+    border-radius:50%;
+    background:var(--nav-accent);
+    color:#fff;
+    border:none;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Zen Maru Gothic',sans-serif;
+    font-size:11px;font-weight:700;letter-spacing:.03em;line-height:1;
+    cursor:pointer;
+    box-shadow:0 6px 16px rgba(92,82,88,.24);
+    opacity:0;visibility:hidden;
+    transform:translateY(8px);
+    transition:opacity .25s ease,transform .25s ease,visibility .25s;
+    z-index:50;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .scroll-top-btn.show{
+    opacity:1;visibility:visible;transform:translateY(0);
+  }
+  .scroll-top-btn:hover{ filter:brightness(.92); }
+  .scroll-top-btn:active{ transform:scale(.94); }
+  @media (prefers-reduced-motion: reduce){
+    .scroll-top-btn{ transition:none; }
+  }
+
   /* ホーム画面キャッシュの手動リセットボタン */
   .reload-latest-btn{
     display:block;width:240px;max-width:100%;margin:10px auto 0;padding:9px 12px;
@@ -358,7 +387,7 @@
     <h1>編み物・くらしのアプリ</h1>
     <h2>Knitting &amp; Life Tools</h2>
     <p class="title-ja-sub"><span class="sub-text"><span style="white-space:nowrap;">無料で使える</span><span style="white-space:nowrap;">大人かわいい</span><span style="white-space:nowrap;">アプリを</span><span style="white-space:nowrap;">まとめました</span></span></p>
-    <p class="brand"><span class="deco">✿</span>　<span class="brand-text">Y U C C H I</span>　<span class="deco">✿</span></p>
+    <p class="brand"><span class="deco">✿</span>　<span class="brand-text">Y&nbsp;&nbsp;U&nbsp;&nbsp;C&nbsp;&nbsp;C&nbsp;&nbsp;H&nbsp;&nbsp;I</span>　<span class="deco">✿</span></p>
   </header>
 
   <nav class="nav" id="filterNav">
@@ -390,7 +419,7 @@
     <div class="app-grid">
 
       <a class="app-card live" href="https://webkorisu.github.io/knitting-counter/" target="_blank" rel="noopener noreferrer" data-app="counter">
-        <div class="app-thumb live"><img src="assets/counter-thumb.jpg" alt="編み物カウンターの操作画面"></div>
+        <div class="app-thumb live"><img src="assets/counter-thumb.jpg" alt="編み物カウンターの操作画面" loading="lazy"></div>
         <div class="app-card-body">
           <h3>編み物カウンター</h3>
           <p>目数・段数・周数・回数をシンプルにカウント</p>
@@ -399,7 +428,7 @@
       </a>
 
       <a class="app-card live" href="https://webkorisu.github.io/knitting-stitch-calculator/" target="_blank" rel="noopener noreferrer" data-app="calc">
-        <div class="app-thumb live"><img src="assets/calc-thumb.jpg" alt="分散増減計算の結果画面"></div>
+        <div class="app-thumb live"><img src="assets/calc-thumb.jpg" alt="分散増減計算の結果画面" loading="lazy"></div>
         <div class="app-card-body">
           <h3>編み物分散増減計算</h3>
           <p>分散減目・分散増目をかんたん計算</p>
@@ -426,7 +455,7 @@
     <div class="app-grid">
 
       <a class="app-card live" href="https://webkorisu.github.io/tarot/" target="_blank" rel="noopener noreferrer" data-app="tarot">
-        <div class="app-thumb live"><img src="assets/tarot-thumb.jpg" alt="タロット占いの結果画面（女帝カード）"></div>
+        <div class="app-thumb live"><img src="assets/tarot-thumb.jpg" alt="タロット占いの結果画面（女帝カード）" loading="lazy"></div>
         <div class="app-card-body">
           <h3>タロット占い</h3>
           <p>気軽に楽しめるタロットカード</p>
@@ -530,9 +559,11 @@
 
   <footer>
     <div class="sec-div"></div>
-    <p class="brand"><span class="deco">✿</span>　<span class="brand-text">Y U C C H I</span>　<span class="deco">✿</span></p>
+    <p class="brand"><span class="deco">✿</span>　<span class="brand-text">Y&nbsp;&nbsp;U&nbsp;&nbsp;C&nbsp;&nbsp;C&nbsp;&nbsp;H&nbsp;&nbsp;I</span>　<span class="deco">✿</span></p>
     <p class="copy">© 2026 YUCCHI'S — small tools for cozy days</p>
   </footer>
+
+  <button type="button" class="scroll-top-btn" id="scrollTopBtn" aria-label="ページの先頭へ戻る" title="上へ戻る">TOP</button>
 
 </div>
 
@@ -562,6 +593,21 @@
         // ヒーローはポータル全体の紹介なので「すべて」タブのときだけ表示
         hero.classList.toggle('is-hidden', filter !== 'all');
       });
+    });
+  })();
+
+  (function(){
+    var btn = document.getElementById('scrollTopBtn');
+    var SHOW_AT = 400; // このpx以上スクロールしたらボタンを表示
+
+    function onScroll(){
+      btn.classList.toggle('show', window.scrollY > SHOW_AT);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    btn.addEventListener('click', function(){
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   })();
 </script>
