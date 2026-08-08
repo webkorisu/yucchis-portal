@@ -34,13 +34,13 @@
     --radius-sm:10px;
 
     --badge-new-bg:#F5E8B0;    --badge-new-border:#C8B448;  --badge-new-text:#7A6010;
-    --badge-live-bg:#BD857A;   --badge-live-border:#A84D68; --badge-live-text:#FFFFFF;
+    --badge-live-bg:#C98D82;   --badge-live-border:#A84D68; --badge-live-text:#FFFFFF;
     --badge-soon-bg:#80A4AD;   --badge-soon-border:#4A6D85; --badge-soon-text:#FFFFFF;
 
     --accent-pink:#E8AAB4;
-    --accent-pink-icon:#FBEEF0;
+    --accent-pink-icon:#F7EEEC;
     --accent-gray:#B7C4CC;
-    --accent-gray-icon:#EEF2F4;
+    --accent-gray-icon:#ECF1F3;
   }
 
   html,body{background:var(--bg);}
@@ -91,9 +91,9 @@
     content:'';display:block;width:30px;height:1px;
     background:currentColor;opacity:.45;flex-shrink:0;
   }
-  .title-ja-sub .sub-break{ display:none; }
-  @media (max-width:600px){
-    .title-ja-sub .sub-break{ display:inline; }
+  @media (max-width:640px){
+    header .title-ja-sub::before,
+    header .title-ja-sub::after{ display:none; }
   }
   header .brand{
     font-family:'Cormorant Garamond',serif;
@@ -339,7 +339,7 @@
 
   /* ホーム画面キャッシュの手動リセットボタン */
   .reload-latest-btn{
-    display:block;width:100%;margin-top:10px;padding:9px 12px;
+    display:block;width:240px;max-width:100%;margin:10px auto 0;padding:9px 12px;
     background:var(--surface);border:1.5px solid var(--border);
     border-radius:var(--radius-sm);
     font-family:'Zen Maru Gothic',sans-serif;font-size:11px;font-weight:700;
@@ -357,7 +357,7 @@
   <header>
     <h1>編み物・くらしのアプリ</h1>
     <h2>Knitting &amp; Life Tools</h2>
-    <p class="title-ja-sub"><span class="sub-text">無料で使える大人かわいいアプリを<br class="sub-break">まとめました</span></p>
+    <p class="title-ja-sub"><span class="sub-text"><span style="white-space:nowrap;">無料で使える</span><span style="white-space:nowrap;">大人かわいい</span><span style="white-space:nowrap;">アプリを</span><span style="white-space:nowrap;">まとめました</span></span></p>
     <p class="brand"><span class="deco">✿</span>YUCCHI<span class="deco">✿</span></p>
   </header>
 
@@ -373,7 +373,7 @@
       <img src="assets/hero.jpg" alt="編み途中のニットと、YUCCHI手作りのステッチマーカー" loading="lazy">
     </div>
     <div class="hero-body">
-      <p class="hero-body-title">A Little Easier, A Little Cozier</p>
+      <p class="hero-body-title">A Little Easier, A&nbsp;Little&nbsp;Cozier</p>
       <p class="hero-body-desc">編み物とくらしをちょっと便利に心地良くするアプリを無料で公開しています。</p>
       <div class="hero-tags">
         <span class="tag">無料で使える</span>
