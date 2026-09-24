@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+  <!-- © 2026 YUCCHI. 無断複製・再配布禁止 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light only">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>編み物・くらしのアプリ | Knitting & Life Tools ✿ YUCCHI ✿</title>
+<title>編み物アプリ・くらしのアプリ | Knitting & Life Tools ✿ YUCCHI ✿</title>
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-<meta name="description" content="棒針・かぎ針の計算をサポートする編み物ツールを無料で公開。分散減目・分散増目の計算、目数カウンターなど、編み物をもっと楽しくする大人かわいいアプリをまとめたポータルサイトです。">
+<meta name="description" content="編み物アプリを無料で公開。分散減目・分散増目（減らし目・増やし目）の計算、目数カウンター、編み図の定規など、棒針・かぎ針の編み物をもっと楽しくする大人かわいいアプリをまとめたポータルサイトです。">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://webkorisu.github.io/yucchis-portal/">
 
 <!-- OGP（X・LINEなどでシェアされた時のカード表示） -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="✿ YUCCHI ✿">
-<meta property="og:title" content="編み物・くらしのアプリ | Knitting & Life Tools ✿ YUCCHI ✿">
-<meta property="og:description" content="棒針・かぎ針の計算をサポートする編み物ツールを無料で公開。分散減目・分散増目の計算、目数カウンターなど、編み物をもっと楽しくする大人かわいいアプリをまとめたポータルサイトです。">
+<meta property="og:title" content="編み物アプリ・くらしのアプリ | Knitting & Life Tools ✿ YUCCHI ✿">
+<meta property="og:description" content="編み物アプリを無料で公開。分散減目・分散増目（減らし目・増やし目）の計算、目数カウンター、編み図の定規など、棒針・かぎ針の編み物をもっと楽しくする大人かわいいアプリをまとめたポータルサイトです。">
 <meta property="og:url" content="https://webkorisu.github.io/yucchis-portal/">
 <meta property="og:image" content="https://webkorisu.github.io/yucchis-portal/assets/hero.jpg">
 <meta property="og:locale" content="ja_JP">
 
 <!-- Xカード -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="編み物・くらしのアプリ | Knitting & Life Tools ✿ YUCCHI ✿">
-<meta name="twitter:description" content="棒針・かぎ針の計算をサポートする編み物ツールを無料で公開。分散減目・分散増目の計算、目数カウンターなど、編み物をもっと楽しくする大人かわいいアプリをまとめたポータルサイトです。">
+<meta name="twitter:title" content="編み物アプリ・くらしのアプリ | Knitting & Life Tools ✿ YUCCHI ✿">
+<meta name="twitter:description" content="編み物アプリを無料で公開。分散減目・分散増目（減らし目・増やし目）の計算、目数カウンター、編み図の定規など、棒針・かぎ針の編み物をもっと楽しくする大人かわいいアプリをまとめたポータルサイトです。">
 <meta name="twitter:image" content="https://webkorisu.github.io/yucchis-portal/assets/hero.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -136,8 +137,12 @@
   .nav-item.active{background:var(--nav-accent);color:#fff;border-color:var(--nav-accent);}
 
   /* ===== ヒーロー ===== */
+  .hero-wrap{
+    position:relative;
+    margin:52px 20px 0;   /* ナビとの間14px＋アイコン30px＋カードとの間8px */
+  }
   .hero{
-    margin:28px 20px 0;
+    margin:0;
     border-radius:var(--radius);
     border:1.5px solid var(--border);
     overflow:hidden;
@@ -320,6 +325,14 @@
   }
   .x-icon-btn svg{fill:var(--text-sub);}
   .x-icon-btn:hover{background:#F3ECE2;}
+  /* ヒーローカードの右上（カードの外・上側）に浮かせるXアイコン */
+  .above-card-row{
+    position:absolute;
+    top:-38px;            /* ボタン30px＋カードとの間の余白8px */
+    right:0;
+    display:flex;align-items:center;gap:6px;
+  }
+  .above-card-row .x-icon-btn{ -webkit-tap-highlight-color:transparent; }
   .last-updated{font-size:11px;color:var(--text-sub);opacity:.7;letter-spacing:.03em;}
 
   /* すべてのタブ以外を絞り込み表示するための制御 */
@@ -401,7 +414,7 @@
 <div class="site">
 
   <header>
-    <h1>編み物・くらしのアプリ</h1>
+    <h1>編み物アプリ・くらしのアプリ</h1>
     <h2>Knitting &amp; Life Tools</h2>
     <p class="title-ja-sub"><span class="sub-text"><span style="white-space:nowrap;">無料で使える</span><span style="white-space:nowrap;">大人かわいい</span><span style="white-space:nowrap;">アプリを</span><span style="white-space:nowrap;">まとめました</span></span></p>
     <p class="brand"><span class="deco">✿</span>　<span class="brand-text">Y&nbsp;&nbsp;U&nbsp;&nbsp;C&nbsp;&nbsp;C&nbsp;&nbsp;H&nbsp;&nbsp;I</span>　<span class="deco">✿</span></p>
@@ -414,17 +427,27 @@
     <button class="nav-item" data-filter="article">よみもの</button>
   </nav>
 
-  <div class="hero" data-cat="knit">
-    <div class="hero-visual">
-      <img src="assets/hero.jpg" alt="編み途中のニットと、YUCCHI手作りのステッチマーカー" loading="lazy">
+  <div class="hero-wrap">
+    <div class="above-card-row">
+      <a href="https://x.com/yuttyan4444" target="_blank" rel="noopener noreferrer"
+         aria-label="XでYUCCHIをフォロー" class="x-icon-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.254 5.622L18.244 2.25Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+        </svg>
+      </a>
     </div>
-    <div class="hero-body">
-      <p class="hero-body-title">A Little Easier, A&nbsp;Little&nbsp;Cozier</p>
-      <p class="hero-body-desc">編み物とくらしをちょっと便利に心地良くするアプリを無料で公開しています。</p>
-      <div class="hero-tags">
-        <span class="tag">無料で使える</span>
-        <span class="tag">ログイン不要</span>
-        <span class="tag">スマホ対応</span>
+    <div class="hero" data-cat="knit">
+      <div class="hero-visual">
+        <img src="assets/hero.jpg" alt="編み途中のニットと、YUCCHI手作りのステッチマーカー" loading="lazy">
+      </div>
+      <div class="hero-body">
+        <p class="hero-body-title">A Little Easier, A&nbsp;Little&nbsp;Cozier</p>
+        <p class="hero-body-desc">編み物とくらしをちょっと便利に心地良くするアプリを無料で公開しています。</p>
+        <div class="hero-tags">
+          <span class="tag">無料で使える</span>
+          <span class="tag">ログイン不要</span>
+          <span class="tag">スマホ対応</span>
+        </div>
       </div>
     </div>
   </div>
@@ -432,14 +455,14 @@
   <!-- 編み物ツール -->
   <section class="section" data-cat="knit">
     <div class="sec-label"><h2>編み物ツール</h2></div>
-    <p class="sec-intro">棒針・かぎ針編みをサポートするアプリをまとめました。編み物をもっと楽しく。</p>
+    <p class="sec-intro">棒針・かぎ針編みをサポートする編み物アプリをまとめました。編み物をもっと楽しく。</p>
     <div class="app-grid">
 
       <a class="app-card live" href="https://webkorisu.github.io/knitting-counter/" target="_blank" rel="noopener noreferrer" data-app="counter">
         <div class="app-thumb live"><img src="assets/counter-thumb.jpg" alt="編み物カウンターの操作画面" loading="lazy"></div>
         <div class="app-card-body">
           <h3>編み物カウンター</h3>
-          <p>目数・段数・周数・回数をシンプルにカウント</p>
+          <p>目数・段数・周数・回数をシンプルにカウントできる編み物アプリ</p>
           <span class="app-badge live">公開中</span>
         </div>
       </a>
@@ -448,7 +471,7 @@
         <div class="app-thumb live"><img src="assets/calc-thumb.jpg" alt="分散増減計算の結果画面" loading="lazy"></div>
         <div class="app-card-body">
           <h3>編み物分散増減計算</h3>
-          <p>分散減目・分散増目をかんたん計算</p>
+          <p>分散減目・分散増目（減らし目・増やし目）をかんたん計算</p>
           <span class="app-badge live">公開中</span>
         </div>
       </a>
@@ -457,7 +480,7 @@
         <div class="app-thumb live"><img src="assets/ruler-thumb.jpg" alt="編み図ルーラーの操作画面（段数ガイドで編み図を計測中）" loading="lazy"></div>
         <div class="app-card-body">
           <h3>編み図ルーラー</h3>
-          <p>編み図を見やすくサポート</p>
+          <p>編み図で迷子にならない定規アプリ</p>
           <span class="app-badge live">公開中</span>
         </div>
       </a>
@@ -536,6 +559,7 @@
           <p>このサイトは、編み物や日々の暮らしをちょっと便利にするアプリをまとめた、個人制作のポータルサイトです。</p>
           <p>各アプリの計算結果・提案内容はすべて参考情報としてお使いください。仕上がりや結果はゲージ・素材・個人差によって異なりますので、必ずご自身でご確認のうえお使いください。</p>
           <p>作者（YUCCHI）は、このサイトおよび掲載アプリの内容・結果によって生じたいかなる損害についても責任を負いかねます。あらかじめご了承ください。</p>
+          <p>このサイトのコード・デザインは、作者（YUCCHI）が制作したものです。コードやデザインをそのまま複製・再配布・販売することはご遠慮ください。</p>
         </div>
       </div>
 
@@ -571,7 +595,7 @@
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.254 5.622L18.244 2.25Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
       </svg>
     </a>
-    <span class="last-updated">最終更新：2026.09.18</span>
+    <span class="last-updated">最終更新：2026.09.24</span>
   </div>
 
   <footer>
@@ -594,7 +618,7 @@
   (function(){
     var buttons = document.querySelectorAll('.nav-item');
     var sections = document.querySelectorAll('.section');
-    var hero = document.querySelector('.hero');
+    var hero = document.querySelector('.hero-wrap');
 
     buttons.forEach(function(btn){
       btn.addEventListener('click', function(){
