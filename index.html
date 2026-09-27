@@ -274,15 +274,11 @@
     transform:translateY(-4px);
     box-shadow:0 10px 26px rgba(92,82,88,.12);
   }
-  .article-thumb{
-    height:100px;background:#EFE9E4;
-    display:flex;align-items:center;justify-content:center;font-size:26px;
-  }
   .article-body{padding:16px 18px;}
-  .article-body p{font-size:12px;color:var(--text-sub);font-style:italic;line-height:1.7;}
+  .article-placeholder{font-size:12px;color:var(--text-sub);font-style:italic;line-height:1.7;}
   /* 記事が公開されたときの表示（タイトル・抜粋・note導線） */
   .article-title{
-    font-size:13px;font-weight:700;color:var(--text);
+    font-size:14px;font-weight:700;color:var(--text);
     letter-spacing:.03em;margin-bottom:6px;line-height:1.6;
     font-style:normal;
   }
@@ -462,7 +458,7 @@
         <div class="app-thumb live"><img src="assets/counter-thumb.jpg" alt="編み物カウンターの操作画面" loading="lazy"></div>
         <div class="app-card-body">
           <h3>編み物カウンター</h3>
-          <p>目数・段数・周数・回数をシンプルにカウントできる編み物アプリ</p>
+          <p>目数・段数・周数・回数をシンプルにカウントできる編み物カウンターアプリ</p>
           <span class="app-badge live">公開中</span>
         </div>
       </a>
@@ -471,7 +467,7 @@
         <div class="app-thumb live"><img src="assets/calc-thumb.jpg" alt="分散増減計算の結果画面" loading="lazy"></div>
         <div class="app-card-body">
           <h3>編み物分散増減計算</h3>
-          <p>分散減目・分散増目（減らし目・増やし目）をかんたん計算</p>
+          <p>分散減目・分散増目をかんたんに計算できるアプリ</p>
           <span class="app-badge live">公開中</span>
         </div>
       </a>
@@ -522,20 +518,21 @@
     <div class="sec-label"><h2>よみもの</h2></div>
     <p class="sec-intro">編み物やくらしの記録。</p>
     <div class="article-grid">
+      <a class="article-card is-linked" href="https://webkorisu.github.io/decrease-increase-work/" target="_blank" rel="noopener noreferrer">
+        <div class="article-body">
+          <p class="article-title">編み物分散減目・分散増目解説ページ</p>
+          <p class="article-excerpt">分散減目・分散増目の計算方法を図解入りでわかりやすく解説</p>
+          <div class="article-source"><span>くわしく読む</span><span class="arrow">↗</span></div>
+        </div>
+      </a>
       <div class="article-card">
-        <div class="article-thumb">📖</div>
-        <div class="article-body"><p>準備中です。もうしばらくお待ちください。</p></div>
-      </div>
-      <div class="article-card">
-        <div class="article-thumb">📖</div>
-        <div class="article-body"><p>準備中です。もうしばらくお待ちください。</p></div>
+        <div class="article-body"><p class="article-placeholder">準備中です。もうしばらくお待ちください。</p></div>
       </div>
     </div>
     <!--
       記事が公開できたら、上のカード1つを下のテンプレートに置き換えてください（タイトル・抜粋・URLを差し替えるだけでOK）。
 
       <a class="article-card is-linked" href="https://note.com/xxxxx/n/xxxxxxxx" target="_blank" rel="noopener noreferrer">
-        <div class="article-thumb">📖</div>
         <div class="article-body">
           <p class="article-title">記事タイトルをここに</p>
           <p class="article-excerpt">記事の内容が少し伝わる、1〜2行の紹介文をここに入れます。</p>
@@ -595,7 +592,7 @@
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.254 5.622L18.244 2.25Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
       </svg>
     </a>
-    <span class="last-updated">最終更新：2026.09.24</span>
+    <span class="last-updated">最終更新：2026.09.27</span>
   </div>
 
   <footer>
